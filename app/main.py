@@ -14,9 +14,9 @@ from authorization_tokens import *
 template_list = [ "we need to address the {} {} industrial complex",
 "{} is an allegory for {}",
 "{} is a {} construct",
-"we can eliminate {} by banning {}"
-"{} would have loved {}"
-"i can't believe that people think {} is {}"
+"we can eliminate {} by banning {}",
+"{} would have loved {}",
+"i can't believe that people think {} is {}",
 "there's a lot of evidence to suggest that {} is the result of {}"
 ]
 

@@ -17,7 +17,10 @@ template_list = [ "we need to address the {} {} industrial complex",
 "we can eliminate {} by banning {}",
 "{} would have loved {}",
 "i can't believe that people think {} is {}",
-"there's a lot of evidence to suggest that {} is the result of {}"
+"there's a lot of evidence to suggest that {} is the result of {}",
+"#Free{}",
+"seize the means of {}",
+"{} is {}"
 ]
 
 #word lists
@@ -39,6 +42,13 @@ insult = [ "problematic", "cringe", "cancelled", "bourgeoise", "classist", "raci
 adjective = [ "bourgeoise", "inherent", "critical", "global", "neo-", "marxist", "queer",
 "heterosexual", "social", "implicit", "dominant", "subjective", "objective", "contradictory",
 "temporal", "transnational", "phenomenological", "dialectic" ]
+
+place = [ "The USSR", "Yugoslavia", "Palestine", "Rojava", "Ohio", "Walmart",
+"Detroit", "Brooklyn", "The Global South", "The United States", "Canada",
+"The People’s Republic of China", "Hong Kong", "The White House", "Tibet", "India",
+"California", "Africa", "Asia", "Latin America", "France", "NYC", "Seattle", "Florida",
+"Afghanistan", "The Middle East", "Australia" ]
+
 
 #selecting a sentence format
 sentence = random.choice(template_list)
@@ -65,16 +75,28 @@ elif sentence == "i can't believe that people think {} is {}":
 elif sentence == "there's a lot of evidence to suggest that {} is the result of {}":
     word1 = random.choice(topic)
     word2 = random.choice(topic)
+elif sentence == "#Free{}":
+    word1 = random.choice(place)
+elif sentence == "seize the means of {}":
+    word1 = random.choice(topic)
+elif sentence == "{} is {}":
+    word1 = random.choice(person)
+    word2 = random.choice(insult)
 
 #assembling the message
-message = sentence.format(word1,word2)
+if sentence == "seize the means of {}":
+    message = sentence.format(word1)
+elif sentence == "#Free{}":
+    message = sentence.format(word1)
+else:
+    message = sentence.format(word1,word2)
 
 print(message)
 
 
-#auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-#auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 
-#api = tweepy.API(auth)
+api = tweepy.API(auth)
 
-#api.update_status(message)
+api.update_status(message)
